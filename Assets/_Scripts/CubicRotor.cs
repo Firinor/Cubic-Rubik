@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CubicRotor : MonoBehaviour
 {
+    public PlayerInputHolder input;
+    
     public Transform Rotor;
     public Transform Cubic;
     
@@ -13,19 +16,34 @@ public class CubicRotor : MonoBehaviour
     public Button RedoButton;
 
     public float aminationSpeed = 2;
+    public float aminationResetSpeed = 3;
     
     private List<CubicComand> commands = new(512);
     private int currentIndex = 0;
     private bool isUndo = false;
 
     private Coroutine coroutine;
+    public CameraController CameraController;
+    public inGameTimer Timer;
 
-    public void RotateCubic(string comand)
+    private float offlineTime;
+    public float offlineTimeLimit = 10f;
+    public float offlineRotationSpeed = 1f;
+
+    public List<Transform> CheckList;
+
+    private void Awake()
     {
-        if (Enum.TryParse<CubicComand>(comand, out CubicComand newComand))
+        input.onDrag += HandleTouchInput;
+        offlineTime = offlineTimeLimit * 0.8f;
+    }
+
+    public void RotateCubic(string command)
+    {
+        if (Enum.TryParse<CubicComand>(command, out CubicComand newComand))
             commands.Add(newComand);
         else
-            commands.Add(CubicComand.YC);
+            throw new Exception();
         
         if (commands.Count >= 512)
         {
@@ -34,19 +52,52 @@ public class CubicRotor : MonoBehaviour
         }
     }
 
+    private void HandleTouchInput(Vector2 obj)
+    {
+        offlineTime = 0;
+    }
+    
     private void Update()
     {
+        OfflainRotation();
+        
         if(commands.Count == currentIndex)
             return;
         
         if(coroutine is not null)
             return;
+        
+        coroutine = StartCoroutine(AnimateRotation(commands[currentIndex], CheckPlayerMove));
+    }
 
-
-        coroutine = StartCoroutine(AnimateRotation(commands[currentIndex]));
+    private void CheckPlayerMove()
+    {
+        currentIndex++;
+        coroutine = null;
+        if (IsSolved())
+        {
+            Timer.enabled = false;
+        }
     }
     
-    private IEnumerator AnimateRotation(CubicComand command)
+    private void OfflainRotation()
+    {
+        if(offlineTime >= offlineTimeLimit)
+            CameraController.HandleTouchInput(new Vector2(offlineRotationSpeed*Time.deltaTime, 0));
+        else
+            offlineTime += Time.deltaTime;
+    }
+
+    private IEnumerator AnimateRotationList(List<CubicComand> commands, Action onComplete = null)
+    {
+        foreach (var comand in commands)
+        {
+            yield return AnimateRotation(comand);
+        }
+        onComplete?.Invoke();
+    }
+    
+    private IEnumerator AnimateRotation(CubicComand command, Action onComplete = null)
     {
         List<Transform> sideCubes = new(9);
         Rotor.rotation = Quaternion.identity;
@@ -150,11 +201,95 @@ public class CubicRotor : MonoBehaviour
             position.z = Mathf.Round(position.z);
             cube.position = position;
         }
-        currentIndex++;
-        coroutine = null;
+        onComplete?.Invoke();
+    }
+
+    public void CubicButtonClick()
+    {
+        if (IsSolved())
+        {
+            ShaffleCubic();
+        }
+        else
+        {
+            Timer.enabled = false;
+            commands = new(512);
+            currentIndex = 0;
+            StartCoroutine(ResetCubic());
+        }
+    }
+    
+    public IEnumerator ResetCubic()
+    {
+        float t = 0;
+        List<Quaternion> rotations = new();
+        for (int i = 0; i < CheckList.Count; i++)
+            rotations.Add(CheckList[i].rotation);
+        while (t < aminationResetSpeed)
+        {
+            t += Time.deltaTime;
+            for (int i = 0; i < CheckList.Count; i++)
+                CheckList[i].rotation = Quaternion.Lerp(rotations[i], Quaternion.identity, t/aminationResetSpeed);
+            yield return null;
+        }
+        for (int i = 0; i < CheckList.Count; i++)
+            CheckList[i].rotation = Quaternion.identity;
+    }
+
+    public void ShaffleCubic()
+    {
+        int randomCount = Random.Range(26, 44);
+        string[] faces = { "Y", "W", "B", "R", "G", "O" };
+        string[] modifiers = { "C", "CC", "2" };
+    
+        List<string> scramble = new List<string>();
+        string lastFace = "";
+    
+        for (int i = 0; i < randomCount; i++)
+        {
+            string face;
+            do
+            {
+                face = faces[Random.Range(0, faces.Length)];
+            } while (face == lastFace);
+        
+            string modifier = modifiers[Random.Range(0, modifiers.Length)];
+            scramble.Add(face + modifier);
+            lastFace = face;
+        }
+
+        List<CubicComand> commands = new();
+        foreach (var code in scramble)
+        {
+            if (code.EndsWith("2"))
+            {
+                var replace = code.Replace("2", "C");
+                Enum.TryParse<CubicComand>(replace, out CubicComand newComand);
+                commands.Add(newComand);
+            }
+            else
+            {
+                Enum.TryParse<CubicComand>(code, out CubicComand newComand);
+                commands.Add(newComand);
+            }
+        }
+
+        coroutine = StartCoroutine(AnimateRotationList(commands, onComplete: Timer.StartCubic));
+    }
+    public bool IsSolved()
+    {
+        foreach (var cube in CheckList)
+            if (Quaternion.Angle(cube.rotation, Quaternion.identity) > 1)
+                return false;
+        
+        return true;
+    }
+
+    private void OnDestroy()
+    {
+        input.onDrag -= HandleTouchInput;
     }
 }
-
 public enum CubicComand
 {
     YC,

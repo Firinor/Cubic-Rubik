@@ -5,13 +5,19 @@ public class CameraController : MonoBehaviour
     public PlayerInputHolder input;
     [SerializeField] private Transform target;
     [SerializeField] private float rotationSpeed = 2f;
+    public Vector3 startCameraRotation;
 
     public void Start()
     {
         input.onDrag += HandleTouchInput;
     }
 
-    private void HandleTouchInput(Vector2 delta)
+    public void CameraToStart()
+    {
+        target.rotation = Quaternion.Euler(startCameraRotation);
+    }
+    
+    public void HandleTouchInput(Vector2 delta)
     {
         enabled = true;
         Quaternion rotation = Quaternion.Euler(delta.y * rotationSpeed, -delta.x * rotationSpeed, 0);
