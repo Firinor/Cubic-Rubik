@@ -20,17 +20,19 @@ public class CubicRotor : MonoBehaviour
     
     private List<CubicComand> commands = new(512);
     private int currentIndex = 0;
-    private bool isUndo = false;
+    private int targetIndex = 0;
 
     private Coroutine coroutine;
     public CameraController CameraController;
     public inGameTimer Timer;
 
+    [SerializeField]
     private float offlineTime;
     public float offlineTimeLimit = 10f;
     public float offlineRotationSpeed = 1f;
 
-    public List<Transform> CheckList;
+    public List<CubicPoint> CheckList;
+    public List<Button> ControlButtons;
 
     private void Awake()
     {
@@ -40,6 +42,9 @@ public class CubicRotor : MonoBehaviour
 
     public void RotateCubic(string command)
     {
+        if (targetIndex < commands.Count)
+            commands.RemoveRange(targetIndex, commands.Count-targetIndex);
+        
         if (Enum.TryParse<CubicComand>(command, out CubicComand newComand))
             commands.Add(newComand);
         else
@@ -50,29 +55,97 @@ public class CubicRotor : MonoBehaviour
             commands.RemoveRange(0, 256);
             currentIndex -= 256;
         }
+        offlineTime = 0;
+        targetIndex++;
     }
 
-    private void HandleTouchInput(Vector2 obj)
+    public void UndoMove()
     {
         offlineTime = 0;
+        targetIndex--;
+        UndoButton.interactable = targetIndex > 0;
+    }
+    public void RedoMove()
+    {
+        offlineTime = 0;
+        targetIndex++;
+        RedoButton.interactable = targetIndex < commands.Count;
+    }
+    private void HandleTouchInput(Vector2 delta)
+    {
+        if(delta != Vector2.zero)
+            offlineTime = 0;
     }
     
     private void Update()
     {
         OfflainRotation();
         
-        if(commands.Count == currentIndex)
+        if(targetIndex == currentIndex)
             return;
         
         if(coroutine is not null)
             return;
+
+
+        if (currentIndex < targetIndex)
+        {
+            coroutine = StartCoroutine(AnimateRotation(commands[currentIndex], CheckPlayerMove));
+            currentIndex++;
+        }
+        else
+        {
+            currentIndex--;
+            coroutine = StartCoroutine(AnimateRotation(GetUndo(commands[currentIndex]), UndoAfterAmimation));
+        }
         
-        coroutine = StartCoroutine(AnimateRotation(commands[currentIndex], CheckPlayerMove));
     }
 
+    private CubicComand GetUndo(CubicComand command)
+    {
+        switch (command)
+        {
+            case CubicComand.BC:
+                return CubicComand.BCC;
+            case CubicComand.BCC:
+                return CubicComand.BC;
+            case CubicComand.GC:
+                return CubicComand.GCC;
+            case CubicComand.GCC:
+                return CubicComand.GC;
+            case CubicComand.YC:
+                return CubicComand.YCC;
+            case CubicComand.YCC:
+                return CubicComand.YC;
+            case CubicComand.WC:
+                return CubicComand.WCC;
+            case CubicComand.WCC:
+                return CubicComand.WC;
+            case CubicComand.OC:
+                return CubicComand.OCC;
+            case CubicComand.OCC:
+                return CubicComand.OC;
+            case CubicComand.RC:
+                return CubicComand.RCC;
+            case CubicComand.RCC:
+                return CubicComand.RC;
+        }
+        throw new Exception();
+    }
+
+    private void UndoAfterAmimation()
+    {
+        coroutine = null;
+        UndoRedoButtonsInteraction();
+    }
+    private void UndoRedoButtonsInteraction()
+    {
+        UndoButton.interactable = targetIndex > 0;
+        RedoButton.interactable = targetIndex < commands.Count;
+    }
     private void CheckPlayerMove()
     {
-        currentIndex++;
+        UndoRedoButtonsInteraction();
         coroutine = null;
         if (IsSolved())
         {
@@ -82,8 +155,11 @@ public class CubicRotor : MonoBehaviour
     
     private void OfflainRotation()
     {
-        if(offlineTime >= offlineTimeLimit)
+        if (offlineTime >= offlineTimeLimit)
+        {
             CameraController.HandleTouchInput(new Vector2(offlineRotationSpeed*Time.deltaTime, 0));
+            input.InvokeOnDrag();
+        }
         else
             offlineTime += Time.deltaTime;
     }
@@ -190,7 +266,6 @@ public class CubicRotor : MonoBehaviour
             Rotor.rotation = Quaternion.Lerp(start, target, t);
             yield return null;
         }
-
         for (int i = 0; i < sideCubes.Count; i++)
         {
             Transform cube = sideCubes[i];
@@ -208,32 +283,48 @@ public class CubicRotor : MonoBehaviour
     {
         if (IsSolved())
         {
+            DisableButtons();
             ShaffleCubic();
         }
         else
         {
+            DisableButtons();
             Timer.enabled = false;
             commands = new(512);
             currentIndex = 0;
+            targetIndex = 0;
             StartCoroutine(ResetCubic());
         }
     }
-    
     public IEnumerator ResetCubic()
     {
         float t = 0;
         List<Quaternion> rotations = new();
+        List<Vector3> positions = new();
         for (int i = 0; i < CheckList.Count; i++)
-            rotations.Add(CheckList[i].rotation);
+        {
+            rotations.Add(CheckList[i].transform.rotation);
+            positions.Add(CheckList[i].transform.position);
+        }
         while (t < aminationResetSpeed)
         {
             t += Time.deltaTime;
             for (int i = 0; i < CheckList.Count; i++)
-                CheckList[i].rotation = Quaternion.Lerp(rotations[i], Quaternion.identity, t/aminationResetSpeed);
+            {
+                CheckList[i].transform.position = Vector3.Lerp(positions[i], CheckList[i].StartPosition, t/aminationResetSpeed);
+                CheckList[i].transform.rotation = Quaternion.Lerp(rotations[i], Quaternion.identity, t/aminationResetSpeed);
+            }
             yield return null;
         }
         for (int i = 0; i < CheckList.Count; i++)
-            CheckList[i].rotation = Quaternion.identity;
+        {
+            CheckList[i].transform.position = CheckList[i].StartPosition;
+            CheckList[i].transform.rotation = Quaternion.identity;
+        }
+        EnableButtons();
+        offlineTime = 0;
+        UndoButton.interactable = false;
+        RedoButton.interactable = false;
     }
 
     public void ShaffleCubic()
@@ -241,10 +332,9 @@ public class CubicRotor : MonoBehaviour
         int randomCount = Random.Range(26, 44);
         string[] faces = { "Y", "W", "B", "R", "G", "O" };
         string[] modifiers = { "C", "CC", "2" };
-    
         List<string> scramble = new List<string>();
         string lastFace = "";
-    
+        
         for (int i = 0; i < randomCount; i++)
         {
             string face;
@@ -257,7 +347,6 @@ public class CubicRotor : MonoBehaviour
             scramble.Add(face + modifier);
             lastFace = face;
         }
-
         List<CubicComand> commands = new();
         foreach (var code in scramble)
         {
@@ -273,18 +362,45 @@ public class CubicRotor : MonoBehaviour
                 commands.Add(newComand);
             }
         }
-
-        coroutine = StartCoroutine(AnimateRotationList(commands, onComplete: Timer.StartCubic));
+        coroutine = StartCoroutine(AnimateRotationList(commands, 
+            onComplete: () =>
+            {
+                Timer.StartCubic();
+                coroutine = null;
+                EnableButtons();
+                UndoButton.interactable = false;
+                RedoButton.interactable = false;
+            })
+        );
     }
+
+    private void EnableButtons()
+    {
+        foreach (var button in ControlButtons)
+        {
+            button.interactable = true;
+        }
+    }
+    private void DisableButtons()
+    {
+        foreach (var button in ControlButtons)
+        {
+            button.interactable = false;
+        }
+    }
+
     public bool IsSolved()
     {
         foreach (var cube in CheckList)
-            if (Quaternion.Angle(cube.rotation, Quaternion.identity) > 1)
+            if (Quaternion.Angle(cube.transform.rotation, Quaternion.identity) > 1)
                 return false;
         
         return true;
     }
-
+    public void ResetAutoRotationTimer()
+    {
+        offlineTime = 0;
+    }
     private void OnDestroy()
     {
         input.onDrag -= HandleTouchInput;

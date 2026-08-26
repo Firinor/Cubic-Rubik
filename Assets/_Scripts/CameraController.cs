@@ -5,16 +5,10 @@ public class CameraController : MonoBehaviour
     public PlayerInputHolder input;
     [SerializeField] private Transform target;
     [SerializeField] private float rotationSpeed = 2f;
-    public Vector3 startCameraRotation;
-
+    [SerializeField] private CubicRotor rotor;
     public void Start()
     {
         input.onDrag += HandleTouchInput;
-    }
-
-    public void CameraToStart()
-    {
-        target.rotation = Quaternion.Euler(startCameraRotation);
     }
     
     public void HandleTouchInput(Vector2 delta)
@@ -36,6 +30,8 @@ public class CameraController : MonoBehaviour
         };
         
         target.rotation = Quaternion.Euler(sideVector*90);
+        input.InvokeOnDrag();
+        rotor.ResetAutoRotationTimer();
     }
     
     private void OnDestroy()

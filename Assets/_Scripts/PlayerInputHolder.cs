@@ -101,4 +101,9 @@ public class PlayerInputHolder : MonoBehaviour, IPointerClickHandler, IBeginDrag
     {
         isDrag = false;
     }
+
+    public void InvokeOnDrag()
+    {
+        onDrag?.Invoke(Vector2.zero);
+    }
 }
