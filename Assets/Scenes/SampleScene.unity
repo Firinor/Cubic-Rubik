@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 31401743}
   - component: {fileID: 31401746}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,7 +409,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1110,7 +1110,7 @@ GameObject:
   - component: {fileID: 82721668}
   - component: {fileID: 82721671}
   m_Layer: 0
-  m_Name: OrangeCube
+  m_Name: BlueCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1177,7 +1177,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1747,7 +1747,7 @@ GameObject:
   - component: {fileID: 151652294}
   - component: {fileID: 151652297}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1815,7 +1815,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1873,7 +1873,7 @@ GameObject:
   - component: {fileID: 197038314}
   - component: {fileID: 197038317}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1941,7 +1941,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2673,7 +2673,7 @@ GameObject:
   - component: {fileID: 237394936}
   - component: {fileID: 237394939}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2741,7 +2741,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2829,7 +2829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c867a266ee26f4b894a8256839fd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
-  AxisGameObject: {fileID: 0}
+  AxisGameObject: {fileID: 553291707}
 --- !u!1001 &295289796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4831,7 +4831,7 @@ GameObject:
   - component: {fileID: 589998402}
   - component: {fileID: 589998405}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4899,7 +4899,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5352,7 +5352,7 @@ GameObject:
   - component: {fileID: 625507992}
   - component: {fileID: 625507995}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5420,7 +5420,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5857,7 +5857,7 @@ GameObject:
   - component: {fileID: 743791170}
   - component: {fileID: 743791173}
   m_Layer: 0
-  m_Name: BlueCube
+  m_Name: OrangeCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5924,7 +5924,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6848,7 +6848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474627443606642347, guid: c426dc0b67decee4f8337132cef4db9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4474627443606642347, guid: c426dc0b67decee4f8337132cef4db9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -7724,7 +7724,7 @@ GameObject:
   - component: {fileID: 1013281939}
   - component: {fileID: 1013281942}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7792,7 +7792,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8143,7 +8143,7 @@ GameObject:
   - component: {fileID: 1130402846}
   - component: {fileID: 1130402849}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8211,7 +8211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8716,7 +8716,7 @@ GameObject:
   - component: {fileID: 1188598624}
   - component: {fileID: 1188598627}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8784,7 +8784,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9210,7 +9210,7 @@ GameObject:
   - component: {fileID: 1315717892}
   - component: {fileID: 1315717895}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9278,7 +9278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10044,7 +10044,7 @@ GameObject:
   - component: {fileID: 1366735020}
   - component: {fileID: 1366735023}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10112,7 +10112,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10170,7 +10170,7 @@ GameObject:
   - component: {fileID: 1378200791}
   - component: {fileID: 1378200794}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10238,7 +10238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10593,9 +10593,9 @@ RectTransform:
   - {fileID: 1672277921}
   - {fileID: 295289797}
   - {fileID: 373215856}
-  - {fileID: 3779387259587308706}
   - {fileID: 848189742}
   - {fileID: 1979599840}
+  - {fileID: 3779387259587308706}
   m_Father: {fileID: 61365608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -11556,7 +11556,7 @@ RectTransform:
   m_Father: {fileID: 637398068}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0.15, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11981,7 +11981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474627443606642347, guid: c426dc0b67decee4f8337132cef4db9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4474627443606642347, guid: c426dc0b67decee4f8337132cef4db9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -12423,7 +12423,7 @@ GameObject:
   - component: {fileID: 1703436544}
   - component: {fileID: 1703436547}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12491,7 +12491,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12849,7 +12849,7 @@ GameObject:
   - component: {fileID: 1767060569}
   - component: {fileID: 1767060572}
   m_Layer: 0
-  m_Name: BlueMirror
+  m_Name: OrangeMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12917,7 +12917,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
+  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13191,7 +13191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792994412}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35726577, y: -0.33108866, z: -0.8625159, w: -0.1371414}
+  m_LocalRotation: {x: 0.3409018, y: -0.8206095, z: -0.4230814, w: 0.1771668}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13199,7 +13199,7 @@ Transform:
   - {fileID: 330585546}
   - {fileID: 410087041}
   m_Father: {fileID: 1862787144}
-  m_LocalEulerAnglesHint: {x: 222, y: 135, z: 0}
+  m_LocalEulerAnglesHint: {x: 215, y: 45, z: 120}
 --- !u!1 &1798820811
 GameObject:
   m_ObjectHideFlags: 0
@@ -13692,7 +13692,7 @@ GameObject:
   - component: {fileID: 1870759113}
   - component: {fileID: 1870759116}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13760,7 +13760,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15210,7 +15210,7 @@ GameObject:
   - component: {fileID: 2130218349}
   - component: {fileID: 2130218352}
   m_Layer: 0
-  m_Name: OrangeMirror
+  m_Name: BlueMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15278,7 +15278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f241d2fca90e6a54bbd878ee2e27c8fe, type: 2}
+  - {fileID: 2100000, guid: b4f5aa8ecc8361a468d849a208dcc0d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -183,15 +183,15 @@ public class CubicRotor : MonoBehaviour
         {
             case CubicComand.BC:
                 for (int i = 0; i < Cubic.childCount; i++)
-                    if (Cubic.GetChild(i).position.y < -1)
+                    if (Cubic.GetChild(i).position.x < -1)
                         sideCubes.Add(Cubic.GetChild(i));
-                target *= Quaternion.Euler(0, -90, 0);
+                target *= Quaternion.Euler(-90, 0, 0);
                 break;
             case CubicComand.BCC:
                 for (int i = 0; i < Cubic.childCount; i++)
-                    if (Cubic.GetChild(i).position.y < -1)
+                    if (Cubic.GetChild(i).position.x < -1)
                         sideCubes.Add(Cubic.GetChild(i));
-                target *= Quaternion.Euler(0, 90, 0);
+                target *= Quaternion.Euler(90, 0, 0);
                 break;
             case CubicComand.YC:
                 for (int i = 0; i < Cubic.childCount; i++)
@@ -219,15 +219,15 @@ public class CubicRotor : MonoBehaviour
                 break;
             case CubicComand.OC:
                 for (int i = 0; i < Cubic.childCount; i++)
-                    if (Cubic.GetChild(i).position.x < -1)
+                    if (Cubic.GetChild(i).position.y < -1)
                         sideCubes.Add(Cubic.GetChild(i));
-                target *= Quaternion.Euler(-90, 0, 0);
+                target *= Quaternion.Euler(0, -90, 0);
                 break;
             case CubicComand.OCC:
                 for (int i = 0; i < Cubic.childCount; i++)
-                    if (Cubic.GetChild(i).position.x < -1)
+                    if (Cubic.GetChild(i).position.y < -1)
                         sideCubes.Add(Cubic.GetChild(i));
-                target *= Quaternion.Euler(90, 0, 0);
+                target *= Quaternion.Euler(0, 90, 0);
                 break;
             case CubicComand.WC:
                 for (int i = 0; i < Cubic.childCount; i++)
