@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Perevodi Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Perevodi
+  m_TableCollectionNameGuidString: e3d8b332123a7c34c8a0574c8dcbff1e
+  m_Entries:
+  - m_Id: 42950900678582272
+    m_Key: Solved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49986189196451840
+    m_Key: Stages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49987040329785344
+    m_Key: try
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49987141399928832
+    m_Key: helpful
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49986587512725504
+    m_Key: State1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49987644678660096
+    m_Key: State2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49987943313104896
+    m_Key: State3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49987992940109824
+    m_Key: State4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49988237988126720
+    m_Key: State5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49990759297507328
+    m_Key: GoodLuck
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 7332479553716617216
+  references:
+    version: 2
+    RefIds:
+    - rid: 7332479553716617216
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1776194310140

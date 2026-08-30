@@ -21,15 +21,15 @@ public class CameraController : MonoBehaviour
     {
         Vector3 sideVector = side switch
         {
-            1 => Vector3.up,
-            2 => Vector3.down,
-            3 => Vector3.right,
-            4 => Vector3.left,
-            5 => Vector3.up*2,
-            _ => Vector3.forward
+            1 => new Vector3(180,270,270),
+            2 => new Vector3(180,90,90),
+            3 => new Vector3(90,0,0),
+            4 => new Vector3(270,0,180),
+            5 => new Vector3(180,0,90),
+            _ => new Vector3(0,0,270)
         };
         
-        target.rotation = Quaternion.Euler(sideVector*90);
+        target.rotation = Quaternion.Euler(sideVector);
         input.InvokeOnDrag();
         rotor.ResetAutoRotationTimer();
     }

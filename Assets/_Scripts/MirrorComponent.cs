@@ -2,18 +2,16 @@ using UnityEngine;
 
 public class MirrorComponent : MonoBehaviour
 {
-    private void Start()
+    public void Initialize()
     {
         SettingsManager.Instance.OnMirrorChange += OnMirrorChange;
     }
 
     private void OnMirrorChange(float distance)
     {
-        if (distance <= 1)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
+        gameObject.SetActive(distance > 0.5);
+
+        distance = distance > .5f ? distance : .5f;
         
         Vector3 position = transform.localPosition;
         position.x = Mathf.Approximately(position.x, 0) ? 0 : position.x > 0 ? distance : -distance;

@@ -279,22 +279,19 @@ public class CubicRotor : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    public void CubicButtonClick()
+    public void StartCubicButtonClick()
     {
-        if (IsSolved())
-        {
-            DisableButtons();
-            ShaffleCubic();
-        }
-        else
-        {
-            DisableButtons();
-            Timer.enabled = false;
-            commands = new(512);
-            currentIndex = 0;
-            targetIndex = 0;
-            StartCoroutine(ResetCubic());
-        }
+        DisableButtons();
+        ShaffleCubic();
+    }
+    public void ResetCubicButtonClick()
+    {
+        DisableButtons();
+        Timer.enabled = false;
+        commands = new(512);
+        currentIndex = 0;
+        targetIndex = 0;
+        StartCoroutine(ResetCubic());
     }
     public IEnumerator ResetCubic()
     {
