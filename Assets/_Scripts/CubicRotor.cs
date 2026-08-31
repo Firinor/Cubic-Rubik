@@ -11,6 +11,8 @@ public class CubicRotor : MonoBehaviour
     
     public Transform Rotor;
     public Transform Cubic;
+    public GameObject StartButton;
+    public GameObject Win;
     
     public Button UndoButton;
     public Button RedoButton;
@@ -147,9 +149,11 @@ public class CubicRotor : MonoBehaviour
     {
         UndoRedoButtonsInteraction();
         coroutine = null;
-        if (IsSolved())
+        if (IsSolved() && !StartButton.activeSelf)
         {
             Timer.enabled = false;
+            Win.SetActive(true);
+            SoundManager.Instance.PlayWin();
         }
     }
     
@@ -259,6 +263,7 @@ public class CubicRotor : MonoBehaviour
         for(int i = 0; i < sideCubes.Count; i++)
             sideCubes[i].SetParent(Rotor, worldPositionStays: true);
         float elapsed = 0;
+        SoundManager.Instance.PlayFlick();
         while (elapsed < aminationSpeed)
         {
             elapsed += Time.deltaTime;

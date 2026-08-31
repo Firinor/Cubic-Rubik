@@ -8,7 +8,13 @@ public class AxisComponent : MonoBehaviour
     private void Start()
     {
         input.onDrag += OnDrag;
+        input.onZoom += DistanceChange;
         OnDrag(Vector2.zero);
+    }
+
+    private void DistanceChange(float obj)
+    {
+        distance = 0.5f - Camera.main!.transform.localPosition.z;
     }
 
     private void OnDrag(Vector2 delta)
@@ -18,6 +24,7 @@ public class AxisComponent : MonoBehaviour
     
     private void OnDestroy()
     {
+        input.onZoom -= DistanceChange;
         input.onDrag -= OnDrag;
     }
     

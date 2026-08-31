@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Localization;
@@ -22,6 +23,7 @@ public class SettingsManager : MonoBehaviour
 
     public Toggle AxisToggle;
     public Toggle TimerToggle;
+    public TextMeshProUGUI TimerText;
 
     public Button ResetCubicButton;
     public Button ReviewButton;
@@ -38,13 +40,13 @@ public class SettingsManager : MonoBehaviour
         data = SaveLoadSystem<SettingsData>.Load("Settings", new ());
 
         foreach (MirrorComponent mirror in Mirrors)
-        {
             mirror.Initialize();
-        }
         SetMixerValues();
         Subscribe();
         AxisGameObject.SetActive(data.IsAxis);
         AxisToggle.isOn = !data.IsAxis;
+        TimerText.gameObject.SetActive(data.IsTimer);
+        TimerToggle.isOn = !data.IsTimer;
         OnMirrorChange?.Invoke(data.MirrorValue);
     }
 
@@ -56,7 +58,7 @@ public class SettingsManager : MonoBehaviour
         SoundSlider.onValueChanged.AddListener(value =>
         {
             SoundOff.gameObject.SetActive(value < 0.1);
-            if(SoundOff.gameObject.activeSelf)
+            if(!SoundOff.gameObject.activeSelf)
                 mixer.SetFloat("SFXVolume", Mathf.Log10(value) * 20);
             else
                 mixer.SetFloat("SFXVolume", -80);
@@ -77,6 +79,13 @@ public class SettingsManager : MonoBehaviour
         {
             AxisGameObject.SetActive(!v);
             data.IsAxis = !v;
+            SaveLoadSystem<SettingsData>.Save("Settings", data);
+        });
+        
+        TimerToggle.onValueChanged.AddListener(v =>
+        {
+            TimerText.gameObject.SetActive(!v);
+            data.IsTimer = !v;
             SaveLoadSystem<SettingsData>.Save("Settings", data);
         });
     }
@@ -102,13 +111,14 @@ public class SettingsManager : MonoBehaviour
     private void SetMixerValues()
     {
         SoundOff.gameObject.SetActive(data.SFXValue < 0.1);
-        if(SoundOff.gameObject.activeSelf)
+        SoundSlider.value = data.SFXValue;
+        if(!SoundOff.gameObject.activeSelf)
             mixer.SetFloat("SFXVolume", Mathf.Log10(data.SFXValue) * 20);
         else
             mixer.SetFloat("SFXVolume", -80);
         
         MirrorOff.gameObject.SetActive(data.MirrorValue < 0.5f);
-        OnMirrorChange?.Invoke(data.MirrorValue);
+        MirrorSlider.value = data.MirrorValue;
         
         Locale locale;
         if (data.isPlayerLanguage)

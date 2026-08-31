@@ -5,12 +5,26 @@ public class CameraController : MonoBehaviour
     public PlayerInputHolder input;
     [SerializeField] private Transform target;
     [SerializeField] private float rotationSpeed = 2f;
+    public Vector2 MinMaxCameraZoom;
+    public float ZoomSpeed;
     [SerializeField] private CubicRotor rotor;
     public void Start()
     {
         input.onDrag += HandleTouchInput;
+        input.onZoom += CameraDistance;
     }
-    
+
+    private void CameraDistance(float delta)
+    {
+        Vector3 pos = Camera.main!.transform.localPosition;
+        float distance = -pos.z;
+        distance += delta * ZoomSpeed;
+        distance = Mathf.Max(MinMaxCameraZoom.x, distance);
+        distance = Mathf.Min(MinMaxCameraZoom.y, distance);
+        pos.z = -distance;
+        Camera.main!.transform.localPosition = pos;
+    }
+
     public void HandleTouchInput(Vector2 delta)
     {
         enabled = true;
@@ -36,6 +50,7 @@ public class CameraController : MonoBehaviour
     
     private void OnDestroy()
     {
+        input.onZoom -= CameraDistance;
         input.onDrag -= HandleTouchInput;
     }
 }

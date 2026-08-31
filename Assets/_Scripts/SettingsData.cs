@@ -3,9 +3,10 @@
 [Serializable]
 public class SettingsData
 {
-    public float MirrorValue;
-    public bool IsAxis;
-    public float SFXValue = .2f;
     public bool isPlayerLanguage = false;
+    public bool IsTimer;
+    public bool IsAxis;
+    public float MirrorValue;
+    public float SFXValue = .2f;
     public string Language = "en";
 }
