@@ -10,6 +10,9 @@ public class inGameTimer : MonoBehaviour
 
     public void StartCubic()
     {
+        if(enabled)
+            return;
+        
         time = TimeSpan.Zero;
         enabled = true;
     }

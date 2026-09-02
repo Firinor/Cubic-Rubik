@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
     private Transform dragStartTransform;
     public void Start()
     {
+        Physics.queriesHitBackfaces = false;
         input.onStartDrag += HandleTouchStartInput;
         input.onDrag += HandleTouchInput;
         input.onZoom += CameraDistance;
@@ -24,6 +25,7 @@ public class CameraController : MonoBehaviour
         Ray ray = Camera.main!.ScreenPointToRay(point);
         RaycastHit hit;
         
+        isFlick = false;
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.CompareTag("SideCenter"))
@@ -32,10 +34,10 @@ public class CameraController : MonoBehaviour
             }
             else
             {
-                isFlick = false;
                 isCameraRotation = false;
                 dragStartTransform = hit.transform;
                 dragStartPoint = hit.point;
+                //Debug.Log(hit.point);
             }
         }
         else
@@ -73,12 +75,12 @@ public class CameraController : MonoBehaviour
                 return;
 
             Vector3 slideVector = hit.transform.position - dragStartTransform.position;
-            
+            //Debug.Log(slideVector + " " + slideVector.magnitude + " flick:" + isFlick);
             if(slideVector.magnitude > 2.5f)
                 return;
             
             isFlick = true;
-            if (Mathf.Approximately(dragStartPoint.z, 3))//White side
+            if (Mathf.Abs(dragStartPoint.z - 3) < 0.1f)//White side
             {
                 if (!Mathf.Approximately(slideVector.x, 0))
                 {
@@ -95,7 +97,7 @@ public class CameraController : MonoBehaviour
                         rotor.RotateCubic(slideVector.y < 0 ? "GC" : "GCC");
                 }
             }
-            else if (Mathf.Approximately(dragStartPoint.z, -3))//Yellow side
+            else if (Mathf.Abs(dragStartPoint.z + 3) < 0.1f)//Yellow side
             {
                 if (!Mathf.Approximately(slideVector.x, 0))
                 {
@@ -112,7 +114,7 @@ public class CameraController : MonoBehaviour
                         rotor.RotateCubic(slideVector.y > 0 ? "GC" : "GCC");
                 }
             }
-            else if (Mathf.Approximately(dragStartPoint.y, -3))//Orange side
+            else if (Mathf.Abs(dragStartPoint.y + 3) < 0.1f)//Orange side
             {
                 if (!Mathf.Approximately(slideVector.x, 0))
                 {
@@ -129,7 +131,7 @@ public class CameraController : MonoBehaviour
                         rotor.RotateCubic(slideVector.z < 0 ? "GC" : "GCC");
                 }
             }
-            else if (Mathf.Approximately(dragStartPoint.y, 3))//Red side
+            else if (Mathf.Abs(dragStartPoint.y - 3) < 0.1f)//Red side
             {
                 if (!Mathf.Approximately(slideVector.x, 0))
                 {
@@ -146,7 +148,7 @@ public class CameraController : MonoBehaviour
                         rotor.RotateCubic(slideVector.z > 0 ? "GC" : "GCC");
                 }
             }
-            else if (Mathf.Approximately(dragStartPoint.x, -3))//Blue side
+            else if (Mathf.Abs(dragStartPoint.x + 3) < 0.1f)//Blue side
             {
                 if (!Mathf.Approximately(slideVector.y, 0))
                 {
@@ -163,7 +165,7 @@ public class CameraController : MonoBehaviour
                         rotor.RotateCubic(slideVector.z > 0 ? "RC" : "RCC");
                 }
             }
-            else if (Mathf.Approximately(dragStartPoint.x, 3))//Green side
+            else if (Mathf.Abs(dragStartPoint.x - 3) < 0.1f)//Green side
             {
                 if (!Mathf.Approximately(slideVector.y, 0))
                 {

@@ -59,6 +59,8 @@ public class CubicRotor : MonoBehaviour
         }
         offlineTime = 0;
         targetIndex++;
+        if(!StartButton.activeSelf)
+            Timer.StartCubic();
     }
 
     public void UndoMove()
@@ -151,10 +153,16 @@ public class CubicRotor : MonoBehaviour
         coroutine = null;
         if (IsSolved() && !StartButton.activeSelf)
         {
-            Timer.enabled = false;
-            Win.SetActive(true);
-            SoundManager.Instance.PlayWin();
+            WinCubic();
         }
+    }
+
+    [ContextMenu(nameof(WinCubic))]
+    public void WinCubic()
+    {
+        Timer.enabled = false;
+        Win.SetActive(true);
+        SoundManager.Instance.PlayWin();
     }
     
     private void OfflainRotation()
@@ -367,7 +375,6 @@ public class CubicRotor : MonoBehaviour
         coroutine = StartCoroutine(AnimateRotationList(commands, 
             onComplete: () =>
             {
-                Timer.StartCubic();
                 coroutine = null;
                 EnableButtons();
                 UndoButton.interactable = false;
