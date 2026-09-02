@@ -6,7 +6,7 @@ public class ButtonClick : MonoBehaviour
 {
     private Toggle toggle;
     private Button button;
-    
+
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(0.3f);

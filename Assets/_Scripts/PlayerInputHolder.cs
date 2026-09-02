@@ -5,15 +5,17 @@ using UnityEngine.EventSystems;
 public class PlayerInputHolder : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IScrollHandler
 {
     public event Action<Vector2> onClick;
-    public event Action<Vector2> onDrag;
+    public event Action<Vector2> onStartDrag;
+    public event Action<Vector2, Vector2> onDrag;
+    public event Action<Vector2> onEndDrag;
     public event Action<float> onZoom;
     public float mouseScrollCoef = -0.3f;
     public float touchScrollCoef = 0.01f;
-
+    
     public bool isDebug;
     
     private float _initialDistance;
-    private bool isDrag;
+    public bool isDrag;
     private bool isZoom;
     
     private int TouchCount
@@ -90,20 +92,22 @@ public class PlayerInputHolder : MonoBehaviour, IPointerClickHandler, IBeginDrag
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDrag = true;
+        onStartDrag?.Invoke(eventData.position);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        onDrag?.Invoke(eventData.delta);
+        onDrag?.Invoke(eventData.delta, eventData.position);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         isDrag = false;
+        onEndDrag?.Invoke(eventData.position);
     }
 
     public void InvokeOnDrag()
     {
-        onDrag?.Invoke(Vector2.zero);
+        onDrag?.Invoke(Vector2.zero, Vector2.zero);
     }
 }

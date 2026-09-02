@@ -9,7 +9,7 @@ public class AxisComponent : MonoBehaviour
     {
         input.onDrag += OnDrag;
         input.onZoom += DistanceChange;
-        OnDrag(Vector2.zero);
+        OnDrag(Vector2.zero, Vector2.zero);
     }
 
     private void DistanceChange(float obj)
@@ -17,7 +17,7 @@ public class AxisComponent : MonoBehaviour
         distance = 0.5f - Camera.main!.transform.localPosition.z;
     }
 
-    private void OnDrag(Vector2 delta)
+    private void OnDrag(Vector2 delta, Vector2 point)
     {
         gameObject.SetActive(Vector3.Distance(transform.position, Camera.main.transform.position) > distance);
     }

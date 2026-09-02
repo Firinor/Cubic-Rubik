@@ -73,7 +73,7 @@ public class CubicRotor : MonoBehaviour
         targetIndex++;
         RedoButton.interactable = targetIndex < commands.Count;
     }
-    private void HandleTouchInput(Vector2 delta)
+    private void HandleTouchInput(Vector2 delta, Vector2 point)
     {
         if(delta != Vector2.zero)
             offlineTime = 0;
@@ -161,7 +161,7 @@ public class CubicRotor : MonoBehaviour
     {
         if (offlineTime >= offlineTimeLimit)
         {
-            CameraController.HandleTouchInput(new Vector2(offlineRotationSpeed*Time.deltaTime, 0));
+            CameraController.HandleTouchInput(new Vector2(offlineRotationSpeed*Time.deltaTime, 0), Vector2.zero);
             input.InvokeOnDrag();
         }
         else

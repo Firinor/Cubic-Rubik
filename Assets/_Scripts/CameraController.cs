@@ -5,13 +5,43 @@ public class CameraController : MonoBehaviour
     public PlayerInputHolder input;
     [SerializeField] private Transform target;
     [SerializeField] private float rotationSpeed = 2f;
+    private bool isCameraRotation;
+    private bool isFlick;
     public Vector2 MinMaxCameraZoom;
     public float ZoomSpeed;
     [SerializeField] private CubicRotor rotor;
+    private Vector3 dragStartPoint;
+    private Transform dragStartTransform;
     public void Start()
     {
+        input.onStartDrag += HandleTouchStartInput;
         input.onDrag += HandleTouchInput;
         input.onZoom += CameraDistance;
+    }
+
+    private void HandleTouchStartInput(Vector2 point)
+    {
+        Ray ray = Camera.main!.ScreenPointToRay(point);
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.CompareTag("SideCenter"))
+            {
+                isCameraRotation = true;
+            }
+            else
+            {
+                isFlick = false;
+                isCameraRotation = false;
+                dragStartTransform = hit.transform;
+                dragStartPoint = hit.point;
+            }
+        }
+        else
+        {
+            isCameraRotation = true;
+        }
     }
 
     private void CameraDistance(float delta)
@@ -25,11 +55,132 @@ public class CameraController : MonoBehaviour
         Camera.main!.transform.localPosition = pos;
     }
 
-    public void HandleTouchInput(Vector2 delta)
+    public void HandleTouchInput(Vector2 delta, Vector2 point)
     {
-        enabled = true;
-        Quaternion rotation = Quaternion.Euler(delta.y * rotationSpeed, -delta.x * rotationSpeed, 0);
-        target.rotation *= rotation;
+        if (isCameraRotation)
+        {
+            Quaternion rotation = Quaternion.Euler(delta.y * rotationSpeed, -delta.x * rotationSpeed, 0);
+            target.rotation *= rotation;
+        }
+        else if(!isFlick)
+        {
+            Ray ray = Camera.main!.ScreenPointToRay(point);
+            if (!Physics.Raycast(ray, out RaycastHit hit))
+                return;
+            
+            if(hit.transform == dragStartTransform 
+               || hit.collider.CompareTag("SideCenter"))
+                return;
+
+            Vector3 slideVector = hit.transform.position - dragStartTransform.position;
+            
+            if(slideVector.magnitude > 2.5f)
+                return;
+            
+            isFlick = true;
+            if (Mathf.Approximately(dragStartPoint.z, 3))//White side
+            {
+                if (!Mathf.Approximately(slideVector.x, 0))
+                {
+                    if(dragStartTransform.position.y < -1)
+                        rotor.RotateCubic(slideVector.x < 0 ? "OC" : "OCC");
+                    else if(dragStartTransform.position.y > 1)
+                        rotor.RotateCubic(slideVector.x > 0 ? "RC" : "RCC");
+                }
+                else if(!Mathf.Approximately(slideVector.y, 0))
+                {
+                    if(dragStartTransform.position.x < -1)
+                        rotor.RotateCubic(slideVector.y > 0 ? "BC" : "BCC");
+                    else if(dragStartTransform.position.x > 1)
+                        rotor.RotateCubic(slideVector.y < 0 ? "GC" : "GCC");
+                }
+            }
+            else if (Mathf.Approximately(dragStartPoint.z, -3))//Yellow side
+            {
+                if (!Mathf.Approximately(slideVector.x, 0))
+                {
+                    if(dragStartTransform.position.y < -1)
+                        rotor.RotateCubic(slideVector.x > 0 ? "OC" : "OCC");
+                    else if(dragStartTransform.position.y > 1)
+                        rotor.RotateCubic(slideVector.x < 0 ? "RC" : "RCC");
+                }
+                else if(!Mathf.Approximately(slideVector.y, 0))
+                {
+                    if(dragStartTransform.position.x < -1)
+                        rotor.RotateCubic(slideVector.y < 0 ? "BC" : "BCC");
+                    else if(dragStartTransform.position.x > 1)
+                        rotor.RotateCubic(slideVector.y > 0 ? "GC" : "GCC");
+                }
+            }
+            else if (Mathf.Approximately(dragStartPoint.y, -3))//Orange side
+            {
+                if (!Mathf.Approximately(slideVector.x, 0))
+                {
+                    if(dragStartTransform.position.z < -1)
+                        rotor.RotateCubic(slideVector.x < 0 ? "YC" : "YCC");
+                    else if(dragStartTransform.position.z > 1)
+                        rotor.RotateCubic(slideVector.x > 0 ? "WC" : "WCC");
+                }
+                else if(!Mathf.Approximately(slideVector.z, 0))
+                {
+                    if(dragStartTransform.position.x < -1)
+                        rotor.RotateCubic(slideVector.z > 0 ? "BC" : "BCC");
+                    else if(dragStartTransform.position.x > 1)
+                        rotor.RotateCubic(slideVector.z < 0 ? "GC" : "GCC");
+                }
+            }
+            else if (Mathf.Approximately(dragStartPoint.y, 3))//Red side
+            {
+                if (!Mathf.Approximately(slideVector.x, 0))
+                {
+                    if(dragStartTransform.position.z < -1)
+                        rotor.RotateCubic(slideVector.x > 0 ? "YC" : "YCC");
+                    else if(dragStartTransform.position.z > 1)
+                        rotor.RotateCubic(slideVector.x < 0 ? "WC" : "WCC");
+                }
+                else if(!Mathf.Approximately(slideVector.z, 0))
+                {
+                    if(dragStartTransform.position.x < -1)
+                        rotor.RotateCubic(slideVector.z < 0 ? "BC" : "BCC");
+                    else if(dragStartTransform.position.x > 1)
+                        rotor.RotateCubic(slideVector.z > 0 ? "GC" : "GCC");
+                }
+            }
+            else if (Mathf.Approximately(dragStartPoint.x, -3))//Blue side
+            {
+                if (!Mathf.Approximately(slideVector.y, 0))
+                {
+                    if(dragStartTransform.position.z < -1)
+                        rotor.RotateCubic(slideVector.y > 0 ? "YC" : "YCC");
+                    else if(dragStartTransform.position.z > 1)
+                        rotor.RotateCubic(slideVector.y < 0 ? "WC" : "WCC");
+                }
+                else if(!Mathf.Approximately(slideVector.z, 0))
+                {
+                    if(dragStartTransform.position.y < -1)
+                        rotor.RotateCubic(slideVector.z < 0 ? "OC" : "OCC");
+                    else if(dragStartTransform.position.y > 1)
+                        rotor.RotateCubic(slideVector.z > 0 ? "RC" : "RCC");
+                }
+            }
+            else if (Mathf.Approximately(dragStartPoint.x, 3))//Green side
+            {
+                if (!Mathf.Approximately(slideVector.y, 0))
+                {
+                    if(dragStartTransform.position.z < -1)
+                        rotor.RotateCubic(slideVector.y < 0 ? "YC" : "YCC");
+                    else if(dragStartTransform.position.z > 1)
+                        rotor.RotateCubic(slideVector.y > 0 ? "WC" : "WCC");
+                }
+                else if(!Mathf.Approximately(slideVector.z, 0))
+                {
+                    if(dragStartTransform.position.y < -1)
+                        rotor.RotateCubic(slideVector.z > 0 ? "OC" : "OCC");
+                    else if(dragStartTransform.position.y > 1)
+                        rotor.RotateCubic(slideVector.z < 0 ? "RC" : "RCC");
+                }
+            }
+        }
     }
     public void LookFromSide(int side)
     {
@@ -51,6 +202,7 @@ public class CameraController : MonoBehaviour
     private void OnDestroy()
     {
         input.onZoom -= CameraDistance;
+        input.onStartDrag -= HandleTouchStartInput;
         input.onDrag -= HandleTouchInput;
     }
 }
