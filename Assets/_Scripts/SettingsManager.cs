@@ -5,6 +5,9 @@ using UnityEngine.Audio;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
+#if IS_YANDEX
+using YG;
+#endif
 
 public class SettingsManager : MonoBehaviour
 {

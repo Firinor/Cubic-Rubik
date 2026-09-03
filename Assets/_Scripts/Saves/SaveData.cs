@@ -16,7 +16,8 @@ public abstract class SaveData
     public static SaveData GetPlayer()
     {
 #if IS_YANDEX
-        return new YGSaveData();
+        return new PrefsSaveData();
+        //return new YGSaveData();
 #else
         return new PrefsSaveData();
 #endif

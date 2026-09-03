@@ -1906,7 +1906,6 @@ GameObject:
   - component: {fileID: 82721667}
   - component: {fileID: 82721670}
   - component: {fileID: 82721669}
-  - component: {fileID: 82721668}
   - component: {fileID: 82721671}
   m_Layer: 0
   m_Name: BlueCube
@@ -1930,27 +1929,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553291708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!65 &82721668
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82721666}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &82721669
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6253,7 +6231,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -6423,7 +6401,6 @@ GameObject:
   - component: {fileID: 333876479}
   - component: {fileID: 333876482}
   - component: {fileID: 333876481}
-  - component: {fileID: 333876480}
   - component: {fileID: 333876483}
   m_Layer: 0
   m_Name: WhiteCube
@@ -6447,27 +6424,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553291708}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!65 &333876480
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333876478}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &333876481
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12663,7 +12619,6 @@ GameObject:
   - component: {fileID: 743791169}
   - component: {fileID: 743791172}
   - component: {fileID: 743791171}
-  - component: {fileID: 743791170}
   - component: {fileID: 743791173}
   m_Layer: 0
   m_Name: OrangeCube
@@ -12687,27 +12642,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553291708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &743791170
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743791168}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &743791171
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25658,7 +25592,6 @@ GameObject:
   - component: {fileID: 1612732558}
   - component: {fileID: 1612732561}
   - component: {fileID: 1612732560}
-  - component: {fileID: 1612732559}
   - component: {fileID: 1612732562}
   m_Layer: 0
   m_Name: YellowCube
@@ -25682,27 +25615,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553291708}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!65 &1612732559
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612732557}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1612732560
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26793,6 +26705,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da93ff1850b956e44badaa95a7fd5a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorComponent
+--- !u!1 &1674831312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1674831313}
+  - component: {fileID: 1674831315}
+  - component: {fileID: 1674831314}
+  m_Layer: 0
+  m_Name: YGService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1674831313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674831312}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674831314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674831312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60d8e4ea7334f3479b08e28787b90c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirYandexService.ADSButtons
+  buttons:
+  - {fileID: 462768070}
+  - {fileID: 1424554614}
+  - {fileID: 1773160113}
+  - {fileID: 1373424133}
+  - {fileID: 2022198014}
+--- !u!114 &1674831315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674831312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2f031c24744549a1e104af1ca37a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirYG2Service
+  Timer: 0
 --- !u!1 &1676632591
 GameObject:
   m_ObjectHideFlags: 0
@@ -27335,7 +27311,6 @@ GameObject:
   - component: {fileID: 1713473940}
   - component: {fileID: 1713473943}
   - component: {fileID: 1713473942}
-  - component: {fileID: 1713473941}
   - component: {fileID: 1713473944}
   m_Layer: 0
   m_Name: GreenCube
@@ -27359,27 +27334,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553291708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!65 &1713473941
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1713473939}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1713473942
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34016,7 +33970,6 @@ GameObject:
   - component: {fileID: 2116963098}
   - component: {fileID: 2116963101}
   - component: {fileID: 2116963100}
-  - component: {fileID: 2116963099}
   - component: {fileID: 2116963102}
   m_Layer: 0
   m_Name: RedCube
@@ -34040,27 +33993,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 553291708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2116963099
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116963097}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2116963100
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34878,6 +34810,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 988947602}
+  - {fileID: 1674831313}
   - {fileID: 1149290415}
   - {fileID: 1579765964}
   - {fileID: 1366652759}
