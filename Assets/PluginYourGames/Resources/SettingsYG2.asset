@@ -121,7 +121,7 @@ MonoBehaviour:
         rank: 5
         score: 60
         extraData: 
-    - technoName: time
+    - technoName: BestTime
       entries: '1. Max: 7123
 
         2. Maria: 15321
@@ -178,7 +178,7 @@ MonoBehaviour:
         extraData: 
       currentPlayer:
         rank: 5
-        score: 127000
+        score: 27001
         extraData: 
   Localization:
     setLanguageMod: 1

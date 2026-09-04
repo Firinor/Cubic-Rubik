@@ -1,4 +1,5 @@
 using System;
+using FirAnimations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -30,6 +31,9 @@ public class SettingsManager : MonoBehaviour
 
     public Button ResetCubicButton;
     public Button ReviewButton;
+
+    public FirAnimation Settings;
+    public FirAnimation Info;
     
     public GameObject AxisGameObject;
     
@@ -146,6 +150,22 @@ public class SettingsManager : MonoBehaviour
         LocalizationSettings.SelectedLocale = locale;
     }
 
+    public void SettingsSwitch()
+    {
+        if(Settings.AnimationTime == 1)
+            Settings.Reverse();
+        else if(Settings.AnimationTime == 0)
+            Settings.Play();
+    }
+
+    public void InfoSwitch()
+    {
+        if(Info.AnimationTime == 1)
+            Info.Reverse();
+        else if(Info.AnimationTime == 0)
+            Info.Play();
+    }
+    
     private void OnDestroy()
     {
         RuButton.onClick.RemoveAllListeners();

@@ -16,6 +16,8 @@ namespace FirAnimations
         public AnimationCurve Curve = AnimationCurve.EaseInOut(0,0,1,1);
         protected float _endTime => Curve.keys[Curve.length-1].time;
         public Action OnComplete;
+
+        public float AnimationTime => Time;
         
         public virtual void Initialize()
         {

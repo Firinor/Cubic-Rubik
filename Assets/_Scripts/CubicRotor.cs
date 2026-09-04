@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+#if IS_YANDEX
+using YG;
+using YG.Utils.LB;
+#endif
 
 public class CubicRotor : MonoBehaviour
 {
@@ -36,6 +40,8 @@ public class CubicRotor : MonoBehaviour
     public List<CubicPoint> CheckList;
     public List<Button> ControlButtons;
 
+    private const string leaderboardName = "BestTime";
+    
     private void Awake()
     {
         input.onDrag += HandleTouchInput;
@@ -163,6 +169,24 @@ public class CubicRotor : MonoBehaviour
         Timer.enabled = false;
         Win.SetActive(true);
         SoundManager.Instance.PlayWin();
+#if IS_YANDEX
+        YG2.onGetLeaderboard += SendRecord;
+        YG2.GetLeaderboard(leaderboardName);
+        void SendRecord(LBData lbData)
+        {
+            YG2.onGetLeaderboard -= SendRecord;
+            if (lbData.currentPlayer == null)
+            {
+                YG2.SetLBTimeConvert(leaderboardName, (float)Timer.TotalSeconds);
+                return;
+            }
+            //Debug.Log($"Old record {lbData.currentPlayer.score/1000f}, new record {Timer.TotalSeconds}");
+            if(lbData.currentPlayer.score/1000f < Timer.TotalSeconds)
+                return;
+            
+            YG2.SetLBTimeConvert(leaderboardName, (float)Timer.TotalSeconds);
+        }
+#endif
     }
     
     private void OfflainRotation()
@@ -372,6 +396,8 @@ public class CubicRotor : MonoBehaviour
                 commands.Add(newComand);
             }
         }
+
+        //targetIndex = commands.Count-1;
         coroutine = StartCoroutine(AnimateRotationList(commands, 
             onComplete: () =>
             {
@@ -381,6 +407,7 @@ public class CubicRotor : MonoBehaviour
                 RedoButton.interactable = false;
             })
         );
+        //EnableButtons();
     }
 
     private void EnableButtons()

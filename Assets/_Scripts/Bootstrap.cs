@@ -10,6 +10,7 @@ public class Bootstrap : MonoBehaviour
 {
     [SerializeField]
     private SettingsManager settings;
+    public BugReporter Review;
 
     
     private SaveData player;
@@ -24,7 +25,7 @@ public class Bootstrap : MonoBehaviour
         player.FirstLoad();
         
         settings.Initialize();
-        
+        Review.Initialize();
 #if IS_YANDEX
         YG2.GameReadyAPI();
 #endif

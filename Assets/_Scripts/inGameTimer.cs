@@ -8,6 +8,8 @@ public class inGameTimer : MonoBehaviour
 
     private TimeSpan time;
 
+    public double TotalSeconds => time.TotalSeconds;
+
     public void StartCubic()
     {
         if(enabled)
